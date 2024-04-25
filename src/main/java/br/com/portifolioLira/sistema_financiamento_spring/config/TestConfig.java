@@ -1,14 +1,10 @@
 package br.com.portifolioLira.sistema_financiamento_spring.config;
 
-import br.com.portifolioLira.sistema_financiamento_spring.model.entities.Pessoa;
 import br.com.portifolioLira.sistema_financiamento_spring.repositories.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-
-import java.text.SimpleDateFormat;
-import java.util.Random;
 
 
 @Configuration

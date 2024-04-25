@@ -1,4 +1,4 @@
-package br.com.portifolioLira.sistema_financiamento_spring.model.entities;
+package br.com.portifolioLira.sistema_financiamento_spring.model.DTO;
 
 import br.com.portifolioLira.sistema_financiamento_spring.model.enums.TipoPessoa;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -6,11 +6,10 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
 
 @Entity
 @Table (name = "pessoa")
-public class Pessoa implements Serializable {
+public class PessoaDTO implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,35 +39,44 @@ public class Pessoa implements Serializable {
     private Date dataAposentadoria;
 
     @Column (name = "tipopessoa")
-    private TipoPessoa tipoPessoa;
+    private String tipoPessoa;
 
-    public Pessoa(){}
-    public Pessoa(Long id ,String cpf, String nome, String telefone, String tituloEleitor){
+    public PessoaDTO(){}
+    public PessoaDTO(Long id, String cpf, String cnpj, String nome, String telefone, String inscricaoMunicipal, String tituloEleitor, Date dataAposentadoria, String tipoPessoa){
         this.id = id;
+        this.cpf = cpf;
+        this.cnpj = cnpj;
+        this.nome = nome;
+        this.telefone = telefone;
+        this.inscricaoMunicipal = inscricaoMunicipal;
+        this.tituloEleitor = tituloEleitor;
+        this.dataAposentadoria = dataAposentadoria;
+        this.tipoPessoa = tipoPessoa;
+    }
+
+    public PessoaDTO(String cpf, String nome, String telefone, String tituloEleitor){
         this.cpf = cpf;
         this.nome = nome;
         this.telefone = telefone;
         this.tituloEleitor = tituloEleitor;
-        this.tipoPessoa = TipoPessoa.PESSOA_FISICA;
+        this.tipoPessoa = "PESSOA_FISICA";
     }
 
-    public Pessoa(Long id ,String cpf, String nome, String telefone, String tituloEleitor, Date dataAposentadoria){
-        this.id = id;
+    public PessoaDTO(String cpf, String nome, String telefone, String tituloEleitor, Date dataAposentadoria){
         this.cpf = cpf;
         this.nome = nome;
         this.telefone = telefone;
         this.tituloEleitor = tituloEleitor;
         this.dataAposentadoria = dataAposentadoria;
-        this.tipoPessoa = TipoPessoa.PESSOA_FISICA_APOSENTADA;
+        this.tipoPessoa = "PESSOA_FISICA_APOSENTADA";
     }
 
-    public Pessoa(Long id ,String cnpj, String nome, String telefone, String inscricaoMunicipal, TipoPessoa tipoPessoa) {
-        this.id = id;
+    public PessoaDTO(String cnpj, String nome, String telefone, String inscricaoMunicipal, TipoPessoa tipoPessoa) {
         this.cnpj = cnpj;
         this.nome = nome;
         this.telefone = telefone;
         this.inscricaoMunicipal = inscricaoMunicipal;
-        this.tipoPessoa = TipoPessoa.PESSOA_JURIDICA;
+        this.tipoPessoa = "PESSOA_FISICA_APOSENTADA";
     }
 
     public Long getId() {
@@ -135,17 +143,11 @@ public class Pessoa implements Serializable {
         this.dataAposentadoria = dataAposentadoria;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Pessoa DTOPessoa)) return false;
-        return Objects.equals(id, DTOPessoa.id);
+    public String getTipoPessoa() {
+        return tipoPessoa;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
+    public void setTipoPessoa(String tipoPessoa) {
+        this.tipoPessoa = tipoPessoa;
     }
-
-
 }
