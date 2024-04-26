@@ -9,55 +9,17 @@ import java.util.Date;
 public class ResponsePessoaDTO implements Serializable {
 
     private Long id;
-    private String cpf ;
-    private String cnpj ;
     private String nome;
     private String telefone;
-    private String inscricaoMunicipal;
-    private String tituloEleitor;
-    @JsonFormat(pattern="dd/MM/yyyy")
-    private Date dataAposentadoria;
-    private String tipoPessoa;
+    private TipoPessoa tipoPessoa;
 
     public ResponsePessoaDTO(){}
-    public ResponsePessoaDTO(Long id, String cpf, String cnpj, String nome, String telefone, String inscricaoMunicipal, String tituloEleitor, Date dataAposentadoria, String tipoPessoa){
+
+    public ResponsePessoaDTO(Long id, String nome, String telefone, TipoPessoa tipoPessoa) {
         this.id = id;
-        this.cpf = cpf;
-        this.cnpj = cnpj;
         this.nome = nome;
         this.telefone = telefone;
-        this.inscricaoMunicipal = inscricaoMunicipal;
-        this.tituloEleitor = tituloEleitor;
-        this.dataAposentadoria = dataAposentadoria;
         this.tipoPessoa = tipoPessoa;
-    }
-
-    public ResponsePessoaDTO(Long id, String cpf, String nome, String telefone, String tituloEleitor){
-        this.id = id;
-        this.cpf = cpf;
-        this.nome = nome;
-        this.telefone = telefone;
-        this.tituloEleitor = tituloEleitor;
-        this.tipoPessoa = "PESSOA_FISICA";
-    }
-
-    public ResponsePessoaDTO(Long id, String cpf, String nome, String telefone, String tituloEleitor, Date dataAposentadoria){
-        this.id = id;
-        this.cpf = cpf;
-        this.nome = nome;
-        this.telefone = telefone;
-        this.tituloEleitor = tituloEleitor;
-        this.dataAposentadoria = dataAposentadoria;
-        this.tipoPessoa = "PESSOA_FISICA_APOSENTADA";
-    }
-
-    public ResponsePessoaDTO(Long id, String cnpj, String nome, String telefone, String inscricaoMunicipal, TipoPessoa tipoPessoa) {
-        this.id = id;
-        this.cnpj = cnpj;
-        this.nome = nome;
-        this.telefone = telefone;
-        this.inscricaoMunicipal = inscricaoMunicipal;
-        this.tipoPessoa = "PESSOA_JURIDICA";
     }
 
     public Long getId() {
@@ -66,22 +28,6 @@ public class ResponsePessoaDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public String getCnpj() {
-        return cnpj;
-    }
-
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
     }
 
     public String getNome() {
@@ -100,35 +46,11 @@ public class ResponsePessoaDTO implements Serializable {
         this.telefone = telefone;
     }
 
-    public String getInscricaoMunicipal() {
-        return inscricaoMunicipal;
-    }
-
-    public void setInscricaoMunicipal(String inscricaoMunicipal) {
-        this.inscricaoMunicipal = inscricaoMunicipal;
-    }
-
-    public String getTituloEleitor() {
-        return tituloEleitor;
-    }
-
-    public void setTituloEleitor(String tituloEleitor) {
-        this.tituloEleitor = tituloEleitor;
-    }
-
-    public Date getDataAposentadoria() {
-        return dataAposentadoria;
-    }
-
-    public void setDataAposentadoria(Date dataAposentadoria) {
-        this.dataAposentadoria = dataAposentadoria;
-    }
-
-    public String getTipoPessoa() {
+    public TipoPessoa getTipoPessoa() {
         return tipoPessoa;
     }
 
-    public void setTipoPessoa(String tipoPessoa) {
+    public void setTipoPessoa(TipoPessoa tipoPessoa) {
         this.tipoPessoa = tipoPessoa;
     }
 }
