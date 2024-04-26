@@ -1,7 +1,8 @@
 package br.com.portifolioLira.sistema_financiamento_spring.controllers;
 
 
-import br.com.portifolioLira.sistema_financiamento_spring.model.DTO.PessoaDTO;
+import br.com.portifolioLira.sistema_financiamento_spring.model.DTO.request.EntryPointPessoaDTO;
+import br.com.portifolioLira.sistema_financiamento_spring.model.DTO.response.ResponsePessoaDTO;
 import br.com.portifolioLira.sistema_financiamento_spring.model.entities.Pessoa;
 import br.com.portifolioLira.sistema_financiamento_spring.services.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +27,12 @@ public class PessoaController {
     }
 
     @PostMapping
-    public ResponseEntity<Pessoa> insert(@RequestBody PessoaDTO pessoaDTO){
-        Pessoa pessoa = service.insert(pessoaDTO);
+    public ResponseEntity<ResponsePessoaDTO> insert(@RequestBody EntryPointPessoaDTO pessoaDTO){
+        ResponsePessoaDTO responsePessoaDTO = service.insert(pessoaDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(pessoa.getId())
+                .buildAndExpand(responsePessoaDTO.getId())
                 .toUri();
-        return ResponseEntity.created(uri).body(pessoa);
+        return ResponseEntity.created(uri).body(responsePessoaDTO);
     }
 }

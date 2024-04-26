@@ -1,74 +1,63 @@
-package br.com.portifolioLira.sistema_financiamento_spring.model.entities;
+package br.com.portifolioLira.sistema_financiamento_spring.model.DTO.response;
 
 import br.com.portifolioLira.sistema_financiamento_spring.model.enums.TipoPessoa;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
 
-@Entity
-@Table (name = "pessoa")
-public class Pessoa {
+public class ResponsePessoaDTO implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column (name = "id")
     private Long id;
-
-    @Column (name = "cpf")
     private String cpf ;
-
-    @Column (name = "cnpj")
     private String cnpj ;
-
-    @Column (name = "nome")
     private String nome;
-
-    @Column (name = "telefone")
     private String telefone;
-
-    @Column (name = "inscricaomunicipal") //escrever minusculo para a variável poder ser encontrada no banco de dados mySql
     private String inscricaoMunicipal;
-
-    @Column (name = "tituloeleitor")
     private String tituloEleitor;
-
     @JsonFormat(pattern="dd/MM/yyyy")
-    @Column (name = "dataaposentadoria")
     private Date dataAposentadoria;
+    private String tipoPessoa;
 
-    @Column (name = "tipopessoa")
-    private TipoPessoa tipoPessoa;
+    public ResponsePessoaDTO(){}
+    public ResponsePessoaDTO(Long id, String cpf, String cnpj, String nome, String telefone, String inscricaoMunicipal, String tituloEleitor, Date dataAposentadoria, String tipoPessoa){
+        this.id = id;
+        this.cpf = cpf;
+        this.cnpj = cnpj;
+        this.nome = nome;
+        this.telefone = telefone;
+        this.inscricaoMunicipal = inscricaoMunicipal;
+        this.tituloEleitor = tituloEleitor;
+        this.dataAposentadoria = dataAposentadoria;
+        this.tipoPessoa = tipoPessoa;
+    }
 
-    public Pessoa(){}
-    public Pessoa(Long id ,String cpf, String nome, String telefone, String tituloEleitor){
+    public ResponsePessoaDTO(Long id, String cpf, String nome, String telefone, String tituloEleitor){
         this.id = id;
         this.cpf = cpf;
         this.nome = nome;
         this.telefone = telefone;
         this.tituloEleitor = tituloEleitor;
-        this.tipoPessoa = TipoPessoa.PESSOA_FISICA;
+        this.tipoPessoa = "PESSOA_FISICA";
     }
 
-    public Pessoa(Long id ,String cpf, String nome, String telefone, String tituloEleitor, Date dataAposentadoria){
+    public ResponsePessoaDTO(Long id, String cpf, String nome, String telefone, String tituloEleitor, Date dataAposentadoria){
         this.id = id;
         this.cpf = cpf;
         this.nome = nome;
         this.telefone = telefone;
         this.tituloEleitor = tituloEleitor;
         this.dataAposentadoria = dataAposentadoria;
-        this.tipoPessoa = TipoPessoa.PESSOA_FISICA_APOSENTADA;
+        this.tipoPessoa = "PESSOA_FISICA_APOSENTADA";
     }
 
-    public Pessoa(Long id ,String cnpj, String nome, String telefone, String inscricaoMunicipal, TipoPessoa tipoPessoa) {
+    public ResponsePessoaDTO(Long id, String cnpj, String nome, String telefone, String inscricaoMunicipal, TipoPessoa tipoPessoa) {
         this.id = id;
         this.cnpj = cnpj;
         this.nome = nome;
         this.telefone = telefone;
         this.inscricaoMunicipal = inscricaoMunicipal;
-        this.tipoPessoa = TipoPessoa.PESSOA_JURIDICA;
+        this.tipoPessoa = "PESSOA_JURIDICA";
     }
 
     public Long getId() {
@@ -135,25 +124,11 @@ public class Pessoa {
         this.dataAposentadoria = dataAposentadoria;
     }
 
-    public TipoPessoa getTipoPessoa() {
+    public String getTipoPessoa() {
         return tipoPessoa;
     }
 
-    public void setTipoPessoa(TipoPessoa tipoPessoa) {
+    public void setTipoPessoa(String tipoPessoa) {
         this.tipoPessoa = tipoPessoa;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Pessoa DTOPessoa)) return false;
-        return Objects.equals(id, DTOPessoa.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
-
 }
