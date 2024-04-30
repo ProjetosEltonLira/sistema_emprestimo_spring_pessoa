@@ -8,6 +8,8 @@ class SistemaFinanciamentoSpringApplicationTests {
 
 	@Test
 	void contextLoads() {
+
+
 	}
 
 }

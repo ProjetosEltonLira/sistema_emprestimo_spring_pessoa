@@ -8,7 +8,6 @@ import java.util.Date;
 
 public class EntryPointPessoaDTO implements Serializable {
 
-    private Long id;
     private String cpf ;
     private String cnpj ;
     private String nome;
@@ -17,11 +16,11 @@ public class EntryPointPessoaDTO implements Serializable {
     private String tituloEleitor;
     @JsonFormat(pattern="dd/MM/yyyy")
     private Date dataAposentadoria;
-    private String tipoPessoa;
+    private TipoPessoa tipoPessoa;
 
     public EntryPointPessoaDTO(){}
-    public EntryPointPessoaDTO(Long id, String cpf, String cnpj, String nome, String telefone, String inscricaoMunicipal, String tituloEleitor, Date dataAposentadoria, String tipoPessoa){
-        this.id = id;
+    public EntryPointPessoaDTO(String cpf, String cnpj, String nome, String telefone, String inscricaoMunicipal, String tituloEleitor, Date dataAposentadoria, TipoPessoa tipoPessoa){
+
         this.cpf = cpf;
         this.cnpj = cnpj;
         this.nome = nome;
@@ -30,14 +29,6 @@ public class EntryPointPessoaDTO implements Serializable {
         this.tituloEleitor = tituloEleitor;
         this.dataAposentadoria = dataAposentadoria;
         this.tipoPessoa = tipoPessoa;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getCpf() {
@@ -96,11 +87,15 @@ public class EntryPointPessoaDTO implements Serializable {
         this.dataAposentadoria = dataAposentadoria;
     }
 
-    public String getTipoPessoa() {
+    /*public TipoPessoa getTipoPessoa() {
+        return TipoPessoa.valueOf(String.valueOf(tipoPessoa));
+    }*/
+
+    public TipoPessoa getTipoPessoa() {
         return tipoPessoa;
     }
 
-    public void setTipoPessoa(String tipoPessoa) {
+    public void setTipoPessoa(TipoPessoa tipoPessoa) {
         this.tipoPessoa = tipoPessoa;
     }
 }

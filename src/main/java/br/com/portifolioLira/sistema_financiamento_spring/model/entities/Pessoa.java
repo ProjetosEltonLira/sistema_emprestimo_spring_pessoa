@@ -4,7 +4,6 @@ import br.com.portifolioLira.sistema_financiamento_spring.model.enums.TipoPessoa
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
@@ -39,12 +38,12 @@ public class Pessoa {
     @Column (name = "dataaposentadoria")
     private Date dataAposentadoria;
 
+    @Enumerated(EnumType.STRING)
     @Column (name = "tipopessoa")
     private TipoPessoa tipoPessoa;
 
     public Pessoa(){}
-    public Pessoa(Long id ,String cpf, String nome, String telefone, String tituloEleitor){
-        this.id = id;
+    public Pessoa(String cpf, String nome, String telefone, String tituloEleitor){
         this.cpf = cpf;
         this.nome = nome;
         this.telefone = telefone;
@@ -52,8 +51,7 @@ public class Pessoa {
         this.tipoPessoa = TipoPessoa.PESSOA_FISICA;
     }
 
-    public Pessoa(Long id ,String cpf, String nome, String telefone, String tituloEleitor, Date dataAposentadoria){
-        this.id = id;
+    public Pessoa(String cpf, String nome, String telefone, String tituloEleitor, Date dataAposentadoria){
         this.cpf = cpf;
         this.nome = nome;
         this.telefone = telefone;
@@ -62,8 +60,7 @@ public class Pessoa {
         this.tipoPessoa = TipoPessoa.PESSOA_FISICA_APOSENTADA;
     }
 
-    public Pessoa(Long id ,String cnpj, String nome, String telefone, String inscricaoMunicipal, TipoPessoa tipoPessoa) {
-        this.id = id;
+    public Pessoa(String cnpj, String nome, String telefone, String inscricaoMunicipal, TipoPessoa tipoPessoa) {
         this.cnpj = cnpj;
         this.nome = nome;
         this.telefone = telefone;
